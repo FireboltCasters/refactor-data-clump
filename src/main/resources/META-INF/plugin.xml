@@ -4,6 +4,7 @@
     <name>refactor-data-clump</name>
     <vendor>nilsbaumgartner1994</vendor>
 
+    <depends>JavaScript</depends>
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">

@@ -8,6 +8,7 @@ import com.github.nilsbaumgartner1994.refactordataclump.services.MyProjectServic
 internal class MyProjectManagerListener : ProjectManagerListener {
 
     override fun projectOpened(project: Project) {
+        println("Project Opened");
         project.service<MyProjectService>()
     }
 }
