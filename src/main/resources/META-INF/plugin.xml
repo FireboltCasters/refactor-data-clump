@@ -8,7 +8,14 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-
+        <localInspection language="JavaScript"
+                         groupPath="JavaScript"
+                         groupBundle="messages.InspectionsBundle"
+                         enabledByDefault="true"
+                         groupName="Code Smells"
+                         displayName="Data Clumps"
+                         level="WARNING"
+                         implementationClass="com.github.nilsbaumgartner1994.refactordataclump.codesmells.dataclumps.DataclumpsInspection"/>
     </extensions>
 
     <applicationListeners>

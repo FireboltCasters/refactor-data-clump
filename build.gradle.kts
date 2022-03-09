@@ -14,6 +14,8 @@ plugins {
     id("org.jetbrains.changelog") version "1.3.1"
     // Gradle Qodana Plugin
     id("org.jetbrains.qodana") version "0.1.13"
+    // SonarCube
+    id("org.sonarqube") version "3.3"
 }
 
 group = properties("pluginGroup")
