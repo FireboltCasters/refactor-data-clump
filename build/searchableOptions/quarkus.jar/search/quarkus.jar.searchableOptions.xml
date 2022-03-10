@@ -1,9 +1,0 @@
-<options>
-  <configurable id="quarkus" configurable_name="Quarkus">
-    <option name="automatically" hit="Create run configuration automatically" />
-    <option name="configuration" hit="Create run configuration automatically" />
-    <option name="create" hit="Create run configuration automatically" />
-    <option name="run" hit="Create run configuration automatically" />
-    <option name="quarkus" hit="Quarkus" />
-  </configurable>
-</options>
