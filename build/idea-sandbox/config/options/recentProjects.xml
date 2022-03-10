@@ -1,0 +1,36 @@
+<application>
+  <component name="RecentProjectsManager">
+    <option name="additionalInfo">
+      <map>
+        <entry key="$USER_HOME$/Documents/GitHub/consys">
+          <value>
+            <RecentProjectMetaInfo frameTitle="consys" projectWorkspaceId="1vDeECcDgFy1ddkgfRCiDnpVUR3">
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="IU-212.4746.92" />
+              <option name="buildTimestamp" value="1627369775828" />
+              <frame x="-1331" y="32" width="1400" height="934" />
+              <option name="productionCode" value="IU" />
+              <option name="projectOpenTimestamp" value="1646911731000" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="groups">
+      <list>
+        <ProjectGroup>
+          <option name="bottomGroup" value="true" />
+          <option name="name" value="Eclipse Projects" />
+          <option name="projects">
+            <list>
+              <option value="$USER_HOME$/eclipse-workspace/Tests" />
+              <option value="$USER_HOME$/eclipse-workspace/SWE-Tests" />
+              <option value="$USER_HOME$/eclipse-workspace/Geometry" />
+              <option value="$USER_HOME$/eclipse-workspace/Test" />
+            </list>
+          </option>
+        </ProjectGroup>
+      </list>
+    </option>
+  </component>
+</application>

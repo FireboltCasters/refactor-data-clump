@@ -1,0 +1,11 @@
+<options>
+  <configurable id="preferences.keymap" configurable_name="Keymap">
+    <option name="" path="ActionManager" hit="" />
+    <option name="connect" path="ActionManager" hit="Connect to remote control socket (internal)" />
+    <option name="control" path="ActionManager" hit="Connect to remote control socket (internal)" />
+    <option name="internal" path="ActionManager" hit="Connect to remote control socket (internal)" />
+    <option name="remote" path="ActionManager" hit="Connect to remote control socket (internal)" />
+    <option name="socket" path="ActionManager" hit="Connect to remote control socket (internal)" />
+    <option name="to" path="ActionManager" hit="Connect to remote control socket (internal)" />
+  </configurable>
+</options>

@@ -1,0 +1,24 @@
+<options>
+  <configurable id="preferences.keymap" configurable_name="Keymap">
+    <option name="" path="ActionManager" hit="" />
+    <option name="beans" path="ActionManager" hit="CDI Beans Descriptor (beans.xml)" />
+    <option name="cdi" path="ActionManager" hit="CDI Beans Descriptor (beans.xml)" />
+    <option name="descriptor" path="ActionManager" hit="CDI Beans Descriptor (beans.xml)" />
+    <option name="xml" path="ActionManager" hit="CDI Beans Descriptor (beans.xml)" />
+    <option name="beans" path="ActionManager" hit="Creates beans.xml config file" />
+    <option name="config" path="ActionManager" hit="Creates beans.xml config file" />
+    <option name="creates" path="ActionManager" hit="Creates beans.xml config file" />
+    <option name="file" path="ActionManager" hit="Creates beans.xml config file" />
+    <option name="xml" path="ActionManager" hit="Creates beans.xml config file" />
+  </configurable>
+  <configurable id="fileTemplates" configurable_name="File and Code Templates">
+    <option name="beans" hit="cdi.beans_1_0" />
+    <option name="cdi" hit="cdi.beans_1_0" />
+    <option name="beans" hit="cdi.beans_1_1" />
+    <option name="cdi" hit="cdi.beans_1_1" />
+    <option name="beans" hit="cdi.beans_2_0" />
+    <option name="cdi" hit="cdi.beans_2_0" />
+    <option name="beans" hit="cdi.beans_3_0" />
+    <option name="cdi" hit="cdi.beans_3_0" />
+  </configurable>
+</options>

@@ -1,0 +1,15 @@
+<conversion>
+  <applied-converters>
+    <converter id="DockerRunConfigurationConverterProvider" />
+    <converter id="kotlin-non-jvm-source-roots" />
+  </applied-converters>
+  <project-files>
+    <f p="./.idea/aws.xml" t="1626953261" />
+    <f p="./.idea/consys.iml" t="1626100980" />
+    <f p="./.idea/workspace.xml" t="1646911780" />
+    <f p="./.idea/modules.xml" t="1626100980" />
+    <f p="./.idea/runConfigurations.xml" t="1646745066" />
+    <f p="./.idea/sonarIssues.xml" t="1626953261" />
+    <f p="./.idea/vcs.xml" t="1626100980" />
+  </project-files>
+</conversion>
