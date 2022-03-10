@@ -59,8 +59,8 @@ public class CacheManager {
     allClasses = new ArrayList<PsiLocation>();
     try {
       Collection<VirtualFile> virtualJavaScriptFiles =
-          com.intellij.psi.search.FileTypeIndex.getFiles(
-              JavaScriptFileType.INSTANCE, GlobalSearchScope.projectScope(currentProject));
+              com.intellij.psi.search.FileTypeIndex.getFiles(
+                      JavaScriptFileType.INSTANCE, GlobalSearchScope.projectScope(currentProject));
 
       for (VirtualFile virtualFile : virtualJavaScriptFiles) {
         PsiFile psiFile = PsiManager.getInstance(currentProject).findFile(virtualFile);

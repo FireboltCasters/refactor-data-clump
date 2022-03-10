@@ -17,7 +17,9 @@ jobs:
       - name: Google Java Format Action
         uses: axel-op/googlejavaformat-action@v3
         with:
-          args: "--skip-sorting-imports --replace"
+          args: "--skip-sorting-imports --replace --aosp"
+          #--aosp, -aosp, -a
+          #  Use AOSP style instead of Google Style (4-space indentation).
           # Recommended if you use MacOS:
           githubToken: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
         env:
