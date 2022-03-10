@@ -26,10 +26,10 @@ import java.util.List;
  */
 public class CacheManager {
 
-    private static List<Object> allClasses = new ArrayList<>();
-    private static HashMap<String, List<String>> allSuperClasses = new HashMap<>();
-    private static List<String> allClassesQualifiedNames = new ArrayList<>();
-    private static boolean isCreatingCache = false;
+    public static List<Object> allClasses = new ArrayList<>();
+    public static HashMap<String, List<String>> allSuperClasses = new HashMap<>();
+    public static List<String> allClassesQualifiedNames = new ArrayList<>();
+    public static boolean isCreatingCache = false;
 
     public static void resetIsCacheReady() {
         allClasses = new ArrayList<>();
