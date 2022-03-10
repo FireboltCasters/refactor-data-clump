@@ -1,10 +1,10 @@
 name: Check
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    types: [opened, synchronize, reopened]
+  workflow_run:
+    workflows: ["Format"]
+    branches: [main]
+    types:
+      - completed
 jobs:
   # Run Gradle Wrapper Validation Action to verify the wrapper's checksum
   # Run verifyPlugin, IntelliJ Plugin Verifier, and test Gradle tasks
