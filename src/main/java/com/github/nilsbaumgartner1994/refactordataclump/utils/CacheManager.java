@@ -3,7 +3,6 @@ package com.github.nilsbaumgartner1994.refactordataclump.utils;
 import com.intellij.execution.PsiLocation;
 import com.intellij.lang.javascript.JavaScriptFileType;
 import com.intellij.lang.javascript.psi.JSFunction;
-import com.intellij.lang.javascript.psi.JSParameterListElement;
 import com.intellij.openapi.project.Project;
 import com.google.common.collect.ImmutableList;
 import com.intellij.openapi.vfs.VirtualFile;
@@ -49,22 +48,23 @@ public class CacheManager {
 
     private static HashMap<String, String> getFunctionNamesToIgnore() {
         HashMap<String, String> map = new HashMap<>();
-        String[] ignoreFunctionNames = {"adopt", "fulfilled", "rejected", "step", "sent", "verb", "Symbols"};
+        String[] ignoreFunctionNames = {
+            "adopt", "fulfilled", "rejected", "step", "sent", "verb", "Symbols"
+        };
         for (String ignoreFunctionName : ignoreFunctionNames) {
             map.put(ignoreFunctionName, ignoreFunctionName);
         }
         return map;
     }
 
-    public static List<PsiLocation<JSFunction>> getAllLocationsFromFunction(JSFunction function){
+    public static List<PsiLocation<JSFunction>> getAllLocationsFromFunction(JSFunction function) {
         return ImmutableList.of(new PsiLocation<>(function));
     }
 
-    private static List<JSFunction> getAllFunctionsOfFile(PsiFile psiFile){
+    private static List<JSFunction> getAllFunctionsOfFile(PsiFile psiFile) {
         List<JSFunction> functions = new ArrayList<>();
         if (psiFile != null) {
-            for (JSFunction function :
-                    PsiTreeUtil.findChildrenOfType(psiFile, JSFunction.class)) {
+            for (JSFunction function : PsiTreeUtil.findChildrenOfType(psiFile, JSFunction.class)) {
                 String functionName = function.getName();
                 if (!CacheManager.ignoreFunctionName(functionName)) {
                     functions.add(function);
