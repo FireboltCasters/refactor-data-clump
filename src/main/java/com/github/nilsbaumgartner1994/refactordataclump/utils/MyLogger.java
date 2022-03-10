@@ -4,20 +4,20 @@ import com.intellij.openapi.diagnostic.Logger;
 
 public class MyLogger {
 
-  public static final Logger mainLog = Logger.getInstance("#DataClumps");
+    public static final Logger mainLog = Logger.getInstance("#DataClumps");
 
-  private static long lastTimeStamp;
+    private static long lastTimeStamp;
 
-  public static void log(Object o) {
-    MyLogger.internLog(o);
-    if (MyLogger.lastTimeStamp != 0) {
-      long elapsedTime = System.currentTimeMillis() - MyLogger.lastTimeStamp;
-      MyLogger.internLog(elapsedTime + "");
+    public static void log(Object o) {
+        MyLogger.internLog(o);
+        if (MyLogger.lastTimeStamp != 0) {
+            long elapsedTime = System.currentTimeMillis() - MyLogger.lastTimeStamp;
+            MyLogger.internLog(elapsedTime + "");
+        }
+        MyLogger.lastTimeStamp = System.currentTimeMillis();
     }
-    MyLogger.lastTimeStamp = System.currentTimeMillis();
-  }
 
-  private static void internLog(Object o) {
-    mainLog.warn(o.toString());
-  }
+    private static void internLog(Object o) {
+        mainLog.warn(o.toString());
+    }
 }
