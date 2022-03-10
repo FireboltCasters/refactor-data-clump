@@ -6,8 +6,6 @@ import com.intellij.execution.PsiLocation;
 import com.intellij.lang.javascript.JavaScriptFileType;
 import com.intellij.lang.javascript.TypeScriptFileType;
 import com.intellij.lang.javascript.psi.JSFunction;
-import com.intellij.openapi.fileTypes.FileType;
-import com.intellij.openapi.fileTypes.FileTypeManager;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
@@ -15,9 +13,10 @@ import com.intellij.psi.PsiManager;
 import com.intellij.psi.search.GlobalSearchScope;
 import com.intellij.psi.util.PsiTreeUtil;
 
-import java.util.*;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * The cache manager contains meta-information about the whole project. The information is created when the project
@@ -69,12 +68,12 @@ public class CacheManager {
 
         for (VirtualFile virtualFile : virtualJavaScriptFiles) {
             PsiFile psiFile = PsiManager.getInstance(currentProject).findFile(virtualFile);
-            System.out.println("- "+psiFile.getName());
+            MyLogger.log("- "+psiFile.getName());
 
             for (JSFunction function : PsiTreeUtil.findChildrenOfType(psiFile, JSFunction.class)) {
                 String functionName = function.getName();
                 if(!CacheManager.ignoreFunctionName(functionName)){
-                    System.out.println("-- "+functionName);
+                    MyLogger.log("-- "+functionName);
                     List<PsiLocation> test = ImmutableList.of(new PsiLocation<>(function));
                 }
             }

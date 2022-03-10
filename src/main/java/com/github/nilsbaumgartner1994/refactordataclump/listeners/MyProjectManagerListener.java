@@ -1,6 +1,7 @@
 package com.github.nilsbaumgartner1994.refactordataclump.listeners;
 
 import com.github.nilsbaumgartner1994.refactordataclump.utils.CacheManager;
+import com.github.nilsbaumgartner1994.refactordataclump.utils.MyLogger;
 import com.intellij.openapi.application.ApplicationManager;
 import com.intellij.openapi.application.ModalityState;
 import com.intellij.openapi.project.DumbService;
@@ -26,7 +27,7 @@ public class MyProjectManagerListener implements ProjectManagerListener {
         if (ApplicationManager.getApplication().isUnitTestMode()) {
             return;
         }
-        System.out.println("Okay");
+        MyLogger.log("Okay");
 
         // reset the cache to recreate it for the new project
         CacheManager.resetIsCacheReady();

@@ -1,16 +1,13 @@
 package com.github.nilsbaumgartner1994.refactordataclump.codesmells.dataclumps;
 
-import com.intellij.codeInspection.*;
-import com.intellij.psi.*;
-import com.intellij.ui.DocumentAdapter;
-import com.intellij.util.ui.JBUI;
+import com.github.nilsbaumgartner1994.refactordataclump.utils.MyLogger;
+import com.intellij.codeInspection.LocalInspectionTool;
+import com.intellij.codeInspection.LocalInspectionToolSession;
+import com.intellij.codeInspection.ProblemsHolder;
+import com.intellij.psi.PsiElementVisitor;
 import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
-import javax.swing.event.DocumentEvent;
-import java.awt.*;
-import java.awt.event.ItemEvent;
-import java.io.FileWriter;
 
 /**
  * Main inspection class for data clumps. Responsible for starting checks and reporting found instances.
@@ -38,7 +35,7 @@ public class DataclumpsInspection extends LocalInspectionTool {
      */
     @Override
     public JComponent createOptionsPanel() {
-        System.out.println("createOptionsPanel");
+        MyLogger.log("createOptionsPanel");
         return null;
     }
 
@@ -50,7 +47,7 @@ public class DataclumpsInspection extends LocalInspectionTool {
      */
     @Override
     public void inspectionStarted(@NotNull LocalInspectionToolSession session, boolean isOnTheFly) {
-        System.out.println("inspectionStarted");
+        MyLogger.log("inspectionStarted");
     }
 
     /**
@@ -61,13 +58,13 @@ public class DataclumpsInspection extends LocalInspectionTool {
      */
     @Override
     public void inspectionFinished(@NotNull LocalInspectionToolSession session, @NotNull ProblemsHolder problemsHolder) {
-        System.out.println("inspectionFinished");
+        MyLogger.log("inspectionFinished");
     }
 
     @NotNull
     @Override
     public PsiElementVisitor buildVisitor(@NotNull final ProblemsHolder holder, boolean isOnTheFly) {
-        System.out.println("buildVisitor");
+        MyLogger.log("buildVisitor");
         return new PsiElementVisitor() {
 
         };
