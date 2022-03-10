@@ -110,7 +110,9 @@ jobs:
         shell: bash
         run: |
           cd ${{ github.workspace }}/build/distributions
+
           FILENAME=`ls *.zip`
+          echo "$FILENAME"
           unzip "$FILENAME" -d content
 
           echo "::set-output name=filename::${FILENAME:0:-4}"
