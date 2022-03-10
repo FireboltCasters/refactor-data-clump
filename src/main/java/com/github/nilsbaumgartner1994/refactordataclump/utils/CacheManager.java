@@ -25,7 +25,7 @@ public class CacheManager {
 
     private CacheManager() {}
 
-    protected static List<PsiLocation> allClasses = new ArrayList<PsiLocation>();
+    protected static List<PsiLocation> allClasses = new ArrayList<>();
     protected static HashMap<String, List<String>> allSuperClasses = new HashMap<>();
     protected static List<String> allClassesQualifiedNames = new ArrayList<>();
     protected static boolean isCreatingCache = false;
@@ -41,12 +41,12 @@ public class CacheManager {
         if (functionName == null) {
             return true;
         }
-        HashMap ignoreFunctionNamesMap = CacheManager.getFunctionNamesToIgnore();
+        HashMap<String, String> ignoreFunctionNamesMap = CacheManager.getFunctionNamesToIgnore();
         return ignoreFunctionNamesMap.containsKey(functionName);
     }
 
     private static HashMap<String, String> getFunctionNamesToIgnore() {
-        HashMap<String, String> map = new HashMap<String, String>();
+        HashMap<String, String> map = new HashMap<>();
         String[] ignoreFunctionNames = {"adopt", "fulfilled", "rejected", "step", "sent", "verb"};
         for (String ignoreFunctionName : ignoreFunctionNames) {
             map.put(ignoreFunctionName, ignoreFunctionName);
@@ -56,7 +56,7 @@ public class CacheManager {
 
     public static void createClassesListCache(Project currentProject) {
         MyLogger.log("createClassesListCache start");
-        allClasses = new ArrayList<PsiLocation>();
+        allClasses = new ArrayList<>();
         try {
             Collection<VirtualFile> virtualJavaScriptFiles =
                     com.intellij.psi.search.FileTypeIndex.getFiles(
@@ -73,7 +73,10 @@ public class CacheManager {
                         String functionName = function.getName();
                         if (!CacheManager.ignoreFunctionName(functionName)) {
                             MyLogger.log("-- " + functionName);
-                            // List<PsiLocation> test = ImmutableList.of(new
+                            // List<PsiLocation>
+                            // test
+                            // =
+                            // ImmutableList.of(new
                             // PsiLocation<>(function));
                         }
                     }

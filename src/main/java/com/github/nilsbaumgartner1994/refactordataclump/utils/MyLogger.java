@@ -1,8 +1,13 @@
 package com.github.nilsbaumgartner1994.refactordataclump.utils;
 
+import b.j.M;
 import com.intellij.openapi.diagnostic.Logger;
 
 public class MyLogger {
+
+    private MyLogger(){
+        
+    }
 
     public static final Logger mainLog = Logger.getInstance("#DataClumps");
 
