@@ -1,4 +1,4 @@
-name: Check
+name: SonarAnalyse
 on:
   workflow_run:
     workflows: ["Format"]

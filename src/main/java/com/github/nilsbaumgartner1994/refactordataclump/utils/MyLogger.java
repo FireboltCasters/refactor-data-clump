@@ -9,9 +9,16 @@ public class MyLogger {
     private static long lastTimeStamp;
 
     public static void log(Object o){
+        MyLogger.internLog(o);
+        if(MyLogger.lastTimeStamp != 0){
+            long elapsedTime = System.currentTimeMillis() - MyLogger.lastTimeStamp;
+            MyLogger.internLog(elapsedTime+"");
+        }
         MyLogger.lastTimeStamp = System.currentTimeMillis();
-        System.out.println(o);
-        //mainLog.warn(o);
+    }
+
+    private static void internLog(Object o){
+        mainLog.warn(o.toString());
     }
 
 }

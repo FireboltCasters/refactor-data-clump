@@ -1,5 +1,4 @@
 .gradle
 .idea
 .qodana
-build/*
-!build/classes
+build/**/*
