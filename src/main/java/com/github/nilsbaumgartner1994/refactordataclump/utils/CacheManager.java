@@ -1,6 +1,5 @@
 package com.github.nilsbaumgartner1994.refactordataclump.utils;
 
-import com.google.common.collect.ImmutableList;
 import com.intellij.execution.PsiLocation;
 import com.intellij.lang.javascript.JavaScriptFileType;
 import com.intellij.lang.javascript.psi.JSFunction;
@@ -40,13 +39,13 @@ public class CacheManager {
         isCreatingCache = false;
     }
 
-  private static boolean ignoreFunctionName(String functionName) {
-    if (functionName == null) {
-      return true;
+    private static boolean ignoreFunctionName(String functionName) {
+        if (functionName == null) {
+            return true;
+        }
+        HashMap ignoreFunctionNamesMap = CacheManager.getFunctionNamesToIgnore();
+        return ignoreFunctionNamesMap.containsKey(functionName);
     }
-    HashMap ignoreFunctionNamesMap = CacheManager.getFunctionNamesToIgnore();
-    return ignoreFunctionNamesMap.containsKey(functionName);
-  }
 
     private static HashMap<String, String> getFunctionNamesToIgnore(){
         HashMap<String, String> map = new HashMap<String, String>();
@@ -56,8 +55,6 @@ public class CacheManager {
         }
         return map;
     }
-    return map;
-  }
 
     public static void createClassesListCache(Project currentProject) {
         MyLogger.log("createClassesListCache start");
@@ -66,10 +63,10 @@ public class CacheManager {
             Collection<VirtualFile> virtualJavaScriptFiles = com.intellij.psi.search.FileTypeIndex.getFiles(JavaScriptFileType.INSTANCE,
                     GlobalSearchScope.projectScope(currentProject));
 
-      for (VirtualFile virtualFile : virtualJavaScriptFiles) {
-        PsiFile psiFile = PsiManager.getInstance(currentProject).findFile(virtualFile);
-        if (psiFile != null) {
-          MyLogger.log("- " + psiFile.getName());
+            for (VirtualFile virtualFile : virtualJavaScriptFiles) {
+                PsiFile psiFile = PsiManager.getInstance(currentProject).findFile(virtualFile);
+                if (psiFile != null) {
+                    MyLogger.log("- " + psiFile.getName());
 
                     for (JSFunction function : PsiTreeUtil.findChildrenOfType(psiFile, JSFunction.class)) {
                         String functionName = function.getName();
@@ -80,13 +77,10 @@ public class CacheManager {
                     }
                 }
             }
-          }
+        } catch (Error err) {
+            MyLogger.log(err);
         }
-      }
-    } catch (Error err) {
-      MyLogger.log(err);
-    }
 
-    MyLogger.log("createClassesListCache end");
-  }
+        MyLogger.log("createClassesListCache end");
+    }
 }
