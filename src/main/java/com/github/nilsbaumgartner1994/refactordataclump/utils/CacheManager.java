@@ -68,13 +68,16 @@ public class CacheManager {
 
         for (VirtualFile virtualFile : virtualJavaScriptFiles) {
             PsiFile psiFile = PsiManager.getInstance(currentProject).findFile(virtualFile);
-            MyLogger.log("- "+psiFile.getName());
+            if(psiFile != null){
+                assert psiFile != null;
+                MyLogger.log("- "+psiFile.getName());
 
-            for (JSFunction function : PsiTreeUtil.findChildrenOfType(psiFile, JSFunction.class)) {
-                String functionName = function.getName();
-                if(!CacheManager.ignoreFunctionName(functionName)){
-                    MyLogger.log("-- "+functionName);
-                    List<PsiLocation> test = ImmutableList.of(new PsiLocation<>(function));
+                for (JSFunction function : PsiTreeUtil.findChildrenOfType(psiFile, JSFunction.class)) {
+                    String functionName = function.getName();
+                    if(!CacheManager.ignoreFunctionName(functionName)){
+                        MyLogger.log("-- "+functionName);
+                        List<PsiLocation> test = ImmutableList.of(new PsiLocation<>(function));
+                    }
                 }
             }
         }
