@@ -16,27 +16,24 @@ import org.jetbrains.annotations.NotNull;
  */
 public class MyProjectManagerListener implements ProjectManagerListener {
 
-    /**
-     * Called when project opens
-     *
-     * @param project currently opened project
-     */
-    @Override
-    public void projectOpened(@NotNull Project project) {
-        // Ensure this isn't part of testing
-        if (ApplicationManager.getApplication().isUnitTestMode()) {
-            return;
-        }
-        MyLogger.log("Okay");
-
-        // reset the cache to recreate it for the new project
-        CacheManager.resetIsCacheReady();
-
-        // start creating cache after the project is completely loaded and indexed
-        DumbService.getInstance(project).smartInvokeLater(
-                () ->
-                        CacheManager.createClassesListCache(project)
-                , ModalityState.any()
-        );
+  /**
+   * Called when project opens
+   *
+   * @param project currently opened project
+   */
+  @Override
+  public void projectOpened(@NotNull Project project) {
+    // Ensure this isn't part of testing
+    if (ApplicationManager.getApplication().isUnitTestMode()) {
+      return;
     }
+    MyLogger.log("Okay");
+
+    // reset the cache to recreate it for the new project
+    CacheManager.resetIsCacheReady();
+
+    // start creating cache after the project is completely loaded and indexed
+    DumbService.getInstance(project)
+        .smartInvokeLater(() -> CacheManager.createClassesListCache(project), ModalityState.any());
+  }
 }

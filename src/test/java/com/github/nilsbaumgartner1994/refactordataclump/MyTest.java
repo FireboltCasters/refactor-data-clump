@@ -4,8 +4,7 @@ import com.intellij.testFramework.fixtures.BasePlatformTestCase;
 
 public class MyTest extends BasePlatformTestCase {
 
-    public void testInnerClass() {
-        assertTrue(true);
-    }
-
+  public void testInnerClass() {
+    assertTrue(true);
+  }
 }
