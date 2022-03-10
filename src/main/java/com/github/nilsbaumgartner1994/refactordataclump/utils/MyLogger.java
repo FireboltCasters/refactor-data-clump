@@ -4,9 +4,9 @@ import com.intellij.openapi.diagnostic.Logger;
 
 public class MyLogger {
 
-    public static final Logger mainLog = Logger.getInstance("#DataClumps");
+  public static final Logger mainLog = Logger.getInstance("#DataClumps");
 
-    private static long lastTimeStamp;
+  private static long lastTimeStamp;
 
     public static void log(Object o){
         MyLogger.internLog(o);
