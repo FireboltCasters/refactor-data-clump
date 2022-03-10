@@ -10,7 +10,8 @@ public class MyLogger {
 
     public static void log(Object o){
         MyLogger.lastTimeStamp = System.currentTimeMillis();
-        mainLog.info((String) o);
+        System.out.println(o);
+        //mainLog.warn(o);
     }
 
 }

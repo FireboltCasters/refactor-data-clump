@@ -58,29 +58,30 @@ public class CacheManager {
     public static void createClassesListCache(Project currentProject) {
         MyLogger.log("createClassesListCache start");
         allClasses = new ArrayList<>();
+        try{
+            Collection<VirtualFile> virtualJavaScriptFiles = com.intellij.psi.search.FileTypeIndex.getFiles(JavaScriptFileType.INSTANCE,
+                    GlobalSearchScope.projectScope(currentProject));
 
-        //FileType jsType = FileTypeManager.getInstance().getFileTypeByExtension("js");
-        Collection<VirtualFile> virtualTypeScriptFiles = com.intellij.psi.search.FileTypeIndex.getFiles(TypeScriptFileType.INSTANCE,
-                GlobalSearchScope.projectScope(currentProject));
+            for (VirtualFile virtualFile : virtualJavaScriptFiles) {
+                PsiFile psiFile = PsiManager.getInstance(currentProject).findFile(virtualFile);
+                if(psiFile != null){
+                    assert psiFile != null;
+                    MyLogger.log("- "+psiFile.getName());
 
-        Collection<VirtualFile> virtualJavaScriptFiles = com.intellij.psi.search.FileTypeIndex.getFiles(JavaScriptFileType.INSTANCE,
-                GlobalSearchScope.projectScope(currentProject));
-
-        for (VirtualFile virtualFile : virtualJavaScriptFiles) {
-            PsiFile psiFile = PsiManager.getInstance(currentProject).findFile(virtualFile);
-            if(psiFile != null){
-                assert psiFile != null;
-                MyLogger.log("- "+psiFile.getName());
-
-                for (JSFunction function : PsiTreeUtil.findChildrenOfType(psiFile, JSFunction.class)) {
-                    String functionName = function.getName();
-                    if(!CacheManager.ignoreFunctionName(functionName)){
-                        MyLogger.log("-- "+functionName);
-                        List<PsiLocation> test = ImmutableList.of(new PsiLocation<>(function));
+                    for (JSFunction function : PsiTreeUtil.findChildrenOfType(psiFile, JSFunction.class)) {
+                        String functionName = function.getName();
+                        if(!CacheManager.ignoreFunctionName(functionName)){
+                            MyLogger.log("-- "+functionName);
+                            List<PsiLocation> test = ImmutableList.of(new PsiLocation<>(function));
+                        }
                     }
                 }
             }
+        } catch (Error err){
+            MyLogger.log(err);
         }
+
+
         MyLogger.log("createClassesListCache end");
     }
 
