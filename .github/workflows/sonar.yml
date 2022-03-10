@@ -1,7 +1,8 @@
 name: Check
 on:
-  workflow_run:
-    branches: [main]
+  push:
+    branches:
+      - main
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
