@@ -1,10 +1,7 @@
-name: Sonar
+name: SonarAnalyse
 on:
   workflow_run:
-    workflows: [ "Build" ]
-    branches: [ main ]
-    types:
-      - completed
+    branches: [main]
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
@@ -12,7 +9,7 @@ jobs:
   # Run verifyPlugin, IntelliJ Plugin Verifier, and test Gradle tasks
   # Build plugin and provide the artifact for the next workflow jobs
   build:
-    name: BuildForSonar
+    name: SonarAnalyse
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.properties.outputs.version }}
@@ -76,8 +73,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-#      - name: Build and analyze
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-#          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-#        run: ./gradlew build sonarqube --info
