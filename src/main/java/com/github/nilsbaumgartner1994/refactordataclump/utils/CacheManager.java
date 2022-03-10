@@ -77,7 +77,9 @@ public class CacheManager {
                             // test
                             // =
                             // ImmutableList.of(new
-                            // PsiLocation<>(function));
+                            // PsiLocation
+                            // <>
+                            // (function));
                         }
                     }
                 }
