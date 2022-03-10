@@ -15,11 +15,10 @@
 name: Build
 on:
   workflow_run:
-    workflows: ["SonarAnalyse"]
-    branches: [main]
+    workflows: ["Check"]
+    branches: [master]
     types:
       - completed
-
 
 jobs:
   # Run Gradle Wrapper Validation Action to verify the wrapper's checksum
@@ -27,7 +26,6 @@ jobs:
   # Build plugin and provide the artifact for the next workflow jobs
   build:
     name: Build
-    needs: sonaranalyse
     runs-on: ubuntu-latest
     outputs:
       version: ${{ steps.properties.outputs.version }}
