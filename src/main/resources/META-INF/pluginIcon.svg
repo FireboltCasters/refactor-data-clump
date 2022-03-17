@@ -1,11 +1,1 @@
-<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M32.0845 7.94025V4H24.0203V7.9896H16.029V4H7.91553V7.94025H4V36H16.0044V32.0045C16.0058 30.9457 16.4274 29.9308 17.1766 29.1826C17.9258 28.4345 18.9412 28.0143 20 28.0143C21.0588 28.0143 22.0743 28.4345 22.8234 29.1826C23.5726 29.9308 23.9942 30.9457 23.9956 32.0045V36H36V7.94025H32.0845Z"
-          fill="url(#paint0_linear)"/>
-    <defs>
-        <linearGradient id="paint0_linear" x1="2.94192" y1="4.89955" x2="37.7772" y2="39.7345" gradientUnits="userSpaceOnUse">
-            <stop offset="0.15937" stop-color="#3BEA62"/>
-            <stop offset="0.5404" stop-color="#3C99CC"/>
-            <stop offset="0.93739" stop-color="#6B57FF"/>
-        </linearGradient>
-    </defs>
-</svg>
+<svg version="1.1" viewBox="0.0 0.0 40.0 40.0" fill="none" stroke="none" stroke-linecap="square" stroke-miterlimit="10" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><clipPath id="p.0"><path d="m0 0l40.0 0l0 40.0l-40.0 0l0 -40.0z" clip-rule="nonzero"/></clipPath><g clip-path="url(#p.0)"><path fill="#000000" fill-opacity="0.0" d="m0 0l40.0 0l0 40.0l-40.0 0z" fill-rule="evenodd"/><path fill="#ffffff" d="m5.2755904 19.580051l6.377953 -12.755899l16.692913 0l6.3779545 12.755899l-6.3779545 12.755901l-16.692913 0z" fill-rule="evenodd"/><path fill="#666666" d="m6.6050563 19.586626l5.8031497 -11.606293l15.196851 0l5.80315 11.606293l-5.80315 11.606295l-15.196851 0z" fill-rule="evenodd"/><path fill="#ffffff" d="m13.3904705 31.750553l5.8214607 -24.251968l1.2336578 0l-5.82146 24.251968z" fill-rule="evenodd"/><path fill="#ffffff" d="m19.414814 31.750553l5.8214607 -24.251968l1.2336578 0l-5.8214607 24.251968z" fill-rule="evenodd"/><path fill="#ffffff" d="m33.392467 20.019604l-24.438198 -6.451166l-0.50668144 1.002347l24.438202 6.451167z" fill-rule="evenodd"/><path fill="#ffffff" d="m30.231173 27.444103l-22.516941 -5.4747887l-0.50668097 1.002348l22.516941 5.4747887z" fill-rule="evenodd"/><path fill="#ffffff" d="m30.756865 13.500216l0.1226902 11.338648l0.8536873 0.6928482l-0.1226902 -11.338648z" fill-rule="evenodd"/></g></svg>
