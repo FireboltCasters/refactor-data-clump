@@ -4,8 +4,10 @@ import com.github.nilsbaumgartner1994.refactordataclump.utils.MyLogger;
 import com.intellij.codeInspection.LocalInspectionTool;
 import com.intellij.codeInspection.LocalInspectionToolSession;
 import com.intellij.codeInspection.ProblemsHolder;
+import com.intellij.lang.javascript.psi.JSElementVisitor;
+import com.intellij.lang.javascript.psi.JSFunction;
+import com.intellij.lang.javascript.psi.ecmal4.JSClass;
 import com.intellij.psi.PsiElementVisitor;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 
@@ -43,7 +45,7 @@ public class DataclumpsInspection extends LocalInspectionTool {
      * @param isOnTheFly
      */
     @Override
-    public void inspectionStarted(@NotNull LocalInspectionToolSession session, boolean isOnTheFly) {
+    public void inspectionStarted( LocalInspectionToolSession session, boolean isOnTheFly) {
         MyLogger.log("inspectionStarted");
     }
 
@@ -55,26 +57,42 @@ public class DataclumpsInspection extends LocalInspectionTool {
      */
     @Override
     public void inspectionFinished(
-            @NotNull LocalInspectionToolSession session, @NotNull ProblemsHolder problemsHolder) {
+             LocalInspectionToolSession session,  ProblemsHolder problemsHolder) {
         MyLogger.log("inspectionFinished");
     }
 
-    @NotNull
+
     @Override
     public PsiElementVisitor buildVisitor(
-            @NotNull final ProblemsHolder holder, boolean isOnTheFly) {
+             final ProblemsHolder holder, boolean isOnTheFly) {
         MyLogger.log("buildVisitor");
-        return new PsiElementVisitor() {};
+        return new JSElementVisitor() {
+
+            @Override
+            public void visitJSClass(JSClass aClass) {
+                DataclumpAnalyzer.analyzeClass(aClass);
+            }
+
+            //TODO: removed Class ?
+
+            @Override
+            public void visitJSFunctionDeclaration(JSFunction node) {
+                DataclumpAnalyzer.analyzeMethod(node, holder);
+            }
+
+            //TODO: removed Function ?
+
+        };
     }
 
     @Override
-    @NotNull
+
     public String getGroupDisplayName() {
         return GROUP_DISPLAY_NAME;
     }
 
     @Override
-    @NotNull
+
     public String getDisplayName() {
         return CODE_SMELL_DISPLAY_NAME;
     }

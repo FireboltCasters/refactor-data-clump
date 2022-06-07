@@ -7,7 +7,6 @@ import com.intellij.openapi.application.ModalityState;
 import com.intellij.openapi.project.DumbService;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManagerListener;
-import org.jetbrains.annotations.NotNull;
 
 /**
  * Listener to invoke recreating cache each time a project opened
@@ -22,7 +21,7 @@ public class MyProjectManagerListener implements ProjectManagerListener {
      * @param project currently opened project
      */
     @Override
-    public void projectOpened(@NotNull Project project) {
+    public void projectOpened( Project project) {
         // Ensure this isn't part of testing
         if (ApplicationManager.getApplication().isUnitTestMode()) {
             return;
@@ -30,11 +29,11 @@ public class MyProjectManagerListener implements ProjectManagerListener {
         MyLogger.log("Okay");
 
         // reset the cache to recreate it for the new project
-        CacheManager.resetIsCacheReady();
+        CacheManager.resetCache();
 
         // start creating cache after the project is completely loaded and indexed
         DumbService.getInstance(project)
                 .smartInvokeLater(
-                        () -> CacheManager.createClassesListCache(project), ModalityState.any());
+                        () -> CacheManager.init(project), ModalityState.any());
     }
 }

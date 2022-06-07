@@ -14,7 +14,7 @@ public class MyLogger {
         MyLogger.internLog(o);
         if (MyLogger.lastTimeStamp != 0) {
             long elapsedTime = System.currentTimeMillis() - MyLogger.lastTimeStamp;
-            MyLogger.internLog(elapsedTime + "");
+            //MyLogger.internLog(elapsedTime + "");
         }
         MyLogger.lastTimeStamp = System.currentTimeMillis();
     }

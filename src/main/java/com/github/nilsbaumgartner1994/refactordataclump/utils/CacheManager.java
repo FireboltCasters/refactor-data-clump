@@ -1,8 +1,12 @@
 package com.github.nilsbaumgartner1994.refactordataclump.utils;
 
 import com.intellij.execution.PsiLocation;
+import com.intellij.lang.ecmascript6.JSXHarmonyFileType;
 import com.intellij.lang.javascript.JavaScriptFileType;
+import com.intellij.lang.javascript.TypeScriptFileType;
+import com.intellij.lang.javascript.TypeScriptJSXFileType;
 import com.intellij.lang.javascript.psi.JSFunction;
+import com.intellij.lang.javascript.psi.ecmal4.JSClass;
 import com.intellij.openapi.project.Project;
 import com.google.common.collect.ImmutableList;
 import com.intellij.openapi.vfs.VirtualFile;
@@ -20,19 +24,23 @@ import java.util.List;
  * The cache manager contains meta-information about the whole project. The information is created
  * when the project opens and is quickly accessible afterward
  *
- * @author Nils Baumgartner & Firas Adleh
+ * @author Nils Baumgartner
  */
 public class CacheManager {
 
     private CacheManager() {}
 
-    protected static List<JSFunction> allFunctions = new ArrayList<JSFunction>();
-    protected static HashMap<String, List<String>> allSuperClasses = new HashMap<>();
-    protected static List<String> allClassesQualifiedNames = new ArrayList<>();
-    protected static boolean isCreatingCache = false;
+    public static HashMap<String, JSFunction> allFunctions = new HashMap<>();
+    public static HashMap<String, JSClass> allClasses = new HashMap<>();
 
-    public static void resetIsCacheReady() {
-        allFunctions = new ArrayList<JSFunction>();
+    public static HashMap<String, List<String>> allSuperClasses = new HashMap<>();
+    public static List<String> allClassesQualifiedNames = new ArrayList<>();
+    public static boolean isCreatingCache = false;
+
+    public static void resetCache() {
+        allFunctions = new HashMap<>();
+        allClasses = new HashMap<>();
+
         allSuperClasses = new HashMap<>();
         allClassesQualifiedNames = new ArrayList<>();
         isCreatingCache = false;
@@ -61,6 +69,39 @@ public class CacheManager {
         return ImmutableList.of(new PsiLocation<>(function));
     }
 
+    private static Collection<VirtualFile> getAllJavaScriptFiles(Project currentProject){
+        return com.intellij.psi.search.FileTypeIndex.getFiles(
+                JavaScriptFileType.INSTANCE,
+                GlobalSearchScope.projectScope(currentProject));
+    }
+
+    private static Collection<VirtualFile> getAllJSXFiles(Project currentProject){
+        return com.intellij.psi.search.FileTypeIndex.getFiles(
+                JSXHarmonyFileType.INSTANCE,
+                GlobalSearchScope.projectScope(currentProject));
+    }
+
+    private static Collection<VirtualFile> getAllTypescriptFiles(Project currentProject){
+        return com.intellij.psi.search.FileTypeIndex.getFiles(
+                TypeScriptFileType.INSTANCE,
+                GlobalSearchScope.projectScope(currentProject));
+    }
+
+    private static Collection<VirtualFile> getAllTSXFiles(Project currentProject){
+        return com.intellij.psi.search.FileTypeIndex.getFiles(
+                TypeScriptJSXFileType.INSTANCE,
+                GlobalSearchScope.projectScope(currentProject));
+    }
+
+    private static Collection<VirtualFile> getAllVirtualFiles(Project currentProject){
+        Collection<VirtualFile> files = new ArrayList<>();
+        files.addAll(CacheManager.getAllJavaScriptFiles(currentProject));
+        files.addAll(CacheManager.getAllJSXFiles(currentProject));
+        files.addAll(CacheManager.getAllTypescriptFiles(currentProject));
+        files.addAll(CacheManager.getAllTSXFiles(currentProject));
+        return files;
+    }
+
     private static List<JSFunction> getAllFunctionsOfFile(PsiFile psiFile) {
         List<JSFunction> functions = new ArrayList<>();
         if (psiFile != null) {
@@ -78,24 +119,36 @@ public class CacheManager {
         return functions;
     }
 
-    public static void createClassesListCache(Project currentProject) {
-        MyLogger.log("createClassesListCache start");
-        allFunctions = new ArrayList<>();
+    public static String getUniqueFunctionName(JSFunction function){
+        return function.getQualifiedName();
+    }
+
+    public static void addFunction(JSFunction function){
+        CacheManager.allFunctions.put(CacheManager.getUniqueFunctionName(function), function);
+    }
+
+    public static void addFunctions(List<JSFunction> functions){
+        for (JSFunction function: functions){
+            CacheManager.addFunction(function);
+        }
+    }
+
+    public static void init(Project currentProject) {
+        MyLogger.log("init start");
+
         try {
-            Collection<VirtualFile> virtualJavaScriptFiles =
-                    com.intellij.psi.search.FileTypeIndex.getFiles(
-                            JavaScriptFileType.INSTANCE,
-                            GlobalSearchScope.projectScope(currentProject));
+            Collection<VirtualFile> virtualJavaScriptFiles = CacheManager.getAllVirtualFiles(currentProject);
+            MyLogger.log("init found "+virtualJavaScriptFiles.size()+" files");
 
             for (VirtualFile virtualFile : virtualJavaScriptFiles) {
                 PsiFile psiFile = PsiManager.getInstance(currentProject).findFile(virtualFile);
                 List<JSFunction> functions = CacheManager.getAllFunctionsOfFile(psiFile);
-                CacheManager.allFunctions.addAll(functions);
+                CacheManager.addFunctions(functions);
             }
         } catch (Error err) {
             MyLogger.log(err);
         }
 
-        MyLogger.log("createClassesListCache end");
+        MyLogger.log("init end");
     }
 }
