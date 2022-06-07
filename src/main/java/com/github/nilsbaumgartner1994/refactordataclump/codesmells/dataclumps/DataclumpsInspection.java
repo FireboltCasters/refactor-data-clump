@@ -45,7 +45,7 @@ public class DataclumpsInspection extends LocalInspectionTool {
      * @param isOnTheFly
      */
     @Override
-    public void inspectionStarted( LocalInspectionToolSession session, boolean isOnTheFly) {
+    public void inspectionStarted(LocalInspectionToolSession session, boolean isOnTheFly) {
         MyLogger.log("inspectionStarted");
     }
 
@@ -57,14 +57,12 @@ public class DataclumpsInspection extends LocalInspectionTool {
      */
     @Override
     public void inspectionFinished(
-             LocalInspectionToolSession session,  ProblemsHolder problemsHolder) {
+            LocalInspectionToolSession session, ProblemsHolder problemsHolder) {
         MyLogger.log("inspectionFinished");
     }
 
-
     @Override
-    public PsiElementVisitor buildVisitor(
-             final ProblemsHolder holder, boolean isOnTheFly) {
+    public PsiElementVisitor buildVisitor(final ProblemsHolder holder, boolean isOnTheFly) {
         MyLogger.log("buildVisitor");
         return new JSElementVisitor() {
 
@@ -73,26 +71,24 @@ public class DataclumpsInspection extends LocalInspectionTool {
                 DataclumpAnalyzer.analyzeClass(aClass);
             }
 
-            //TODO: removed Class ?
+            // TODO: removed Class ?
 
             @Override
             public void visitJSFunctionDeclaration(JSFunction node) {
                 DataclumpAnalyzer.analyzeMethod(node, holder);
             }
 
-            //TODO: removed Function ?
+            // TODO: removed Function ?
 
         };
     }
 
     @Override
-
     public String getGroupDisplayName() {
         return GROUP_DISPLAY_NAME;
     }
 
     @Override
-
     public String getDisplayName() {
         return CODE_SMELL_DISPLAY_NAME;
     }

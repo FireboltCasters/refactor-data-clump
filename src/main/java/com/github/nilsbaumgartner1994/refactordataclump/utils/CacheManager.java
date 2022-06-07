@@ -69,31 +69,27 @@ public class CacheManager {
         return ImmutableList.of(new PsiLocation<>(function));
     }
 
-    private static Collection<VirtualFile> getAllJavaScriptFiles(Project currentProject){
+    private static Collection<VirtualFile> getAllJavaScriptFiles(Project currentProject) {
         return com.intellij.psi.search.FileTypeIndex.getFiles(
-                JavaScriptFileType.INSTANCE,
-                GlobalSearchScope.projectScope(currentProject));
+                JavaScriptFileType.INSTANCE, GlobalSearchScope.projectScope(currentProject));
     }
 
-    private static Collection<VirtualFile> getAllJSXFiles(Project currentProject){
+    private static Collection<VirtualFile> getAllJSXFiles(Project currentProject) {
         return com.intellij.psi.search.FileTypeIndex.getFiles(
-                JSXHarmonyFileType.INSTANCE,
-                GlobalSearchScope.projectScope(currentProject));
+                JSXHarmonyFileType.INSTANCE, GlobalSearchScope.projectScope(currentProject));
     }
 
-    private static Collection<VirtualFile> getAllTypescriptFiles(Project currentProject){
+    private static Collection<VirtualFile> getAllTypescriptFiles(Project currentProject) {
         return com.intellij.psi.search.FileTypeIndex.getFiles(
-                TypeScriptFileType.INSTANCE,
-                GlobalSearchScope.projectScope(currentProject));
+                TypeScriptFileType.INSTANCE, GlobalSearchScope.projectScope(currentProject));
     }
 
-    private static Collection<VirtualFile> getAllTSXFiles(Project currentProject){
+    private static Collection<VirtualFile> getAllTSXFiles(Project currentProject) {
         return com.intellij.psi.search.FileTypeIndex.getFiles(
-                TypeScriptJSXFileType.INSTANCE,
-                GlobalSearchScope.projectScope(currentProject));
+                TypeScriptJSXFileType.INSTANCE, GlobalSearchScope.projectScope(currentProject));
     }
 
-    private static Collection<VirtualFile> getAllVirtualFiles(Project currentProject){
+    private static Collection<VirtualFile> getAllVirtualFiles(Project currentProject) {
         Collection<VirtualFile> files = new ArrayList<>();
         files.addAll(CacheManager.getAllJavaScriptFiles(currentProject));
         files.addAll(CacheManager.getAllJSXFiles(currentProject));
@@ -119,16 +115,16 @@ public class CacheManager {
         return functions;
     }
 
-    public static String getUniqueFunctionName(JSFunction function){
+    public static String getUniqueFunctionName(JSFunction function) {
         return function.getQualifiedName();
     }
 
-    public static void addFunction(JSFunction function){
+    public static void addFunction(JSFunction function) {
         CacheManager.allFunctions.put(CacheManager.getUniqueFunctionName(function), function);
     }
 
-    public static void addFunctions(List<JSFunction> functions){
-        for (JSFunction function: functions){
+    public static void addFunctions(List<JSFunction> functions) {
+        for (JSFunction function : functions) {
             CacheManager.addFunction(function);
         }
     }
@@ -137,8 +133,9 @@ public class CacheManager {
         MyLogger.log("init start");
 
         try {
-            Collection<VirtualFile> virtualJavaScriptFiles = CacheManager.getAllVirtualFiles(currentProject);
-            MyLogger.log("init found "+virtualJavaScriptFiles.size()+" files");
+            Collection<VirtualFile> virtualJavaScriptFiles =
+                    CacheManager.getAllVirtualFiles(currentProject);
+            MyLogger.log("init found " + virtualJavaScriptFiles.size() + " files");
 
             for (VirtualFile virtualFile : virtualJavaScriptFiles) {
                 PsiFile psiFile = PsiManager.getInstance(currentProject).findFile(virtualFile);

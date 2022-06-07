@@ -21,7 +21,7 @@ public class MyProjectManagerListener implements ProjectManagerListener {
      * @param project currently opened project
      */
     @Override
-    public void projectOpened( Project project) {
+    public void projectOpened(Project project) {
         // Ensure this isn't part of testing
         if (ApplicationManager.getApplication().isUnitTestMode()) {
             return;
@@ -33,7 +33,6 @@ public class MyProjectManagerListener implements ProjectManagerListener {
 
         // start creating cache after the project is completely loaded and indexed
         DumbService.getInstance(project)
-                .smartInvokeLater(
-                        () -> CacheManager.init(project), ModalityState.any());
+                .smartInvokeLater(() -> CacheManager.init(project), ModalityState.any());
     }
 }

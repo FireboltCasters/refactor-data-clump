@@ -1,6 +1,5 @@
 package com.github.nilsbaumgartner1994.refactordataclump.utils;
 
-
 /**
  * Main inspection class for data clumps. Responsible for starting checks and reporting found
  * instances.
@@ -9,8 +8,5 @@ package com.github.nilsbaumgartner1994.refactordataclump.utils;
  */
 public class MyFile {
 
-    public MyFile(){
-
-    }
-
+    public MyFile() {}
 }
