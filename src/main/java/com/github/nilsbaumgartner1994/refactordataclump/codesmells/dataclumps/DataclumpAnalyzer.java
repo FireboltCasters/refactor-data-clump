@@ -7,7 +7,6 @@ import com.intellij.lang.javascript.psi.ecmal4.JSClass;
 import com.intellij.openapi.util.TextRange;
 import com.intellij.psi.PsiElement;
 
-
 /**
  * Main inspection class for data clumps. Responsible for starting checks and reporting found
  * instances.
